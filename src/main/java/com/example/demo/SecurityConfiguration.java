@@ -19,12 +19,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	MyUserDetailsService userDetailsService;
 
+	@Autowired
+	DataSource dataSource;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// In Memory authentication
-		auth.inMemoryAuthentication().withUser("blah").password("pass").roles("USER").and().withUser("foo")
-				.password("foo").roles("ADMIN");
-
+		auth.jdbcAuthentication().dataSource(dataSource)
 		//auth.userDetailsService(userDetailsService);
 		
 	}
