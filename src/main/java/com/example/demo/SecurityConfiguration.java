@@ -25,7 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// In Memory authentication
-		auth.jdbcAuthentication().dataSource(dataSource)
+		auth.jdbcAuthentication().dataSource(dataSource);
 		//auth.userDetailsService(userDetailsService);
 		
 	}
