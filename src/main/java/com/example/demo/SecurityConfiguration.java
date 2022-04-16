@@ -25,7 +25,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// In Memory authentication
-		auth.jdbcAuthentication().dataSource(dataSource);
+		auth.jdbcAuthentication().dataSource(dataSource)
+		// These queries are what spring security is going to run to get user details. So you can override your own queries. 
+		.usersByUsernameQuery("select username,password,enabled from my_users where username = ?")
+		.authoritiesByUsernameQuery("select username, authority from authorities where username = ?");
 		//auth.userDetailsService(userDetailsService);
 		
 	}
